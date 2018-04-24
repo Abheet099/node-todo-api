@@ -24,8 +24,17 @@ app.post('/todos',(req,res)=>{
 });
 
 
-app.listen(3000,()=>{
-    console.log('server running on 3000');
+app.get('/todos',(req,res)=>{
+    Todo.find().then((todos)=>{
+        res.send({todos});
+    },(e)=>{
+        res.status(400).send(e);
+    })
+});
+
+
+app.listen(3002,()=>{
+    console.log('server running on 3002');
 });
 
 module.exports={app};
